@@ -1,0 +1,209 @@
+:host {
+  display: block;
+  min-height: 100vh; /* ✅ Use min-height instead of fixed height */
+  position: relative;
+  background: url('https://wallpaperbat.com/img/9730815-pharmaceutical-manufacturing.jpg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+}
+
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0; /* ✅ shorthand for top: 0; right: 0; bottom: 0; left: 0 */
+  background-color: var(--overlay-color);
+  z-index: 1;
+  pointer-events: none; /* ✅ Prevents overlay from blocking clicks */
+}
+
+.auth-wrapper {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  min-height: 100vh; 
+  flex-direction: column; /* ✅ Ensure vertical stacking */
+  overflow-y: auto; /* ✅ Allow scrolling if needed */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.auth-card {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+  font-size: 14px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 15px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  transition: 0.3s;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+input:focus {
+  border-color: #56c2a6;
+  box-shadow: 0 0 6px rgba(86, 194, 166, 0.4);
+  outline: none;
+}
+
+button {
+  width: 100%;
+  background-color: var(--accent-color);
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: skyblue;
+}
+
+.auth-link {
+  display: block;
+  margin-top: 20px;
+  color: var(--accent-color);
+  font-weight: 100;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.auth-link:hover {
+  color: skyblue;
+  text-decoration: underline;
+}
+
+.otp-section {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--input-border);
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+}
+
+.otp-timer {
+  margin: 10px 0;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.otp-input input {
+  margin-top: 10px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.5rem;
+    width: 90%;
+  }
+}
+.or-separator {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  color: #aaa;
+  font-size: 14px;
+}
+
+.or-separator::before,
+.or-separator::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #444;
+  margin: 0 10px;
+}
+
+.qr-symbol-wrapper {
+  display: inline-block;
+  padding: 6px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #fff; /* Optional: makes it pop in dark mode */
+}
+
+.qr-symbol-img {
+  width: 40px;  /* or try 32px for smaller */
+  height: 40px;
+  background-image: url('https://th.bing.com/th/id/R.5dd740df07b9b71c1900fe1f009b5845?rik=hHyjsZ4cGmg%2b4g&riu=http%3a%2f%2fwww.pngall.com%2fwp-content%2fuploads%2f2%2fQR-Code-PNG-Photo.png&ehk=Fz4%2f2JKWiq5HEusCABN9aJeWXYaoxhsfzPgiDfEtdSc%3d&risl=&pid=ImgRaw&r=0');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}
+
+
+
+.qr-symbol-wrapper:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+
+
+.qr-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color); /* ✅ adapts to dark mode */
+}
+/* Smooth transitions for theme switching */
+.qr-symbol-wrapper,
+.qr-label,
+.qr-symbol-img {
+  transition: background-color 0.3s, color 0.3s, filter 0.3s;
+}
+.qr-symbol-img {
+  background-color: #ffffff; /* ensures visibility */
+  border: 1px solid #ccc;
+}
+.qr-symbol-wrapper {
+  background: none;
+  padding: 4px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+
+

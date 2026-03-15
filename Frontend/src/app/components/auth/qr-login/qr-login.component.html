@@ -1,0 +1,10 @@
+<div class="qr-login-wrapper">
+  <h2>Scan this QR Code to Login</h2>
+
+  <div *ngIf="qrToken">
+    <qrcode [qrdata]="qrUrl" [width]="200" [errorCorrectionLevel]="'M'"></qrcode>
+    <p class="token-text">{{ qrToken }}</p>
+  </div>
+
+  <p>Scan this using your mobile app and enter your credentials.</p>
+</div>

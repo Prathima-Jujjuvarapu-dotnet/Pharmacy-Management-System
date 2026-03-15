@@ -1,0 +1,44 @@
+<div class="chatbot-widget">
+  <div class="chat-toggle" (click)="toggleChat()">
+    💬 Need Help?
+  </div>
+
+  <div class="chat-window" *ngIf="isOpen">
+    <div class="chat-header">
+      <span>Virtual Assistant</span>
+      <span class="close-btn" (click)="toggleChat()">×</span>
+    </div>
+
+    <div class="chat-body">
+      <div class="chat-message bot intro">
+        🤖 Hi! I'm here to help. Choose a quick option or type your message.
+      </div>
+
+      <div class="quick-buttons">
+        <button (click)="sendQuickMessage('Hi')">Hi</button>
+        <button (click)="sendQuickMessage('reactivateAccount')">Reactivate Account</button>
+        <button (click)="sendQuickMessage('login')">Login</button>
+      </div>
+
+      <div class="chat-box" *ngFor="let msg of chatHistory">
+        <div class="chat-message user">
+          <div class="icon">🧑</div>
+          <div class="bubble">{{ msg.user }}</div>
+        </div>
+        <div class="chat-message bot">
+          <div class="icon">🤖</div>
+          <div class="bubble">{{ msg.bot }}</div>
+        </div>
+      </div>
+
+      <div class="typing-indicator" *ngIf="isTyping">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <div class="chat-input">
+      <input [(ngModel)]="userMessage" placeholder="Type your message..." (keyup.enter)="sendMessage()" />
+      <button (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>

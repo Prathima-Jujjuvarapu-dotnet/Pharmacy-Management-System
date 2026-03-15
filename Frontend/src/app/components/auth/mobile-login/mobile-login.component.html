@@ -1,0 +1,17 @@
+<div class="mobile-login-container">
+  <div class="mobile-login-wrapper animated-box">
+    <!-- <img src="assets/logo.png" alt="Brand Logo" class="brand-logo" /> -->
+
+    <h2>QR Login</h2>
+
+    <form (ngSubmit)="submitLogin()">
+      <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required />
+      <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required />
+      <button type="submit" [disabled]="loading">Login</button>
+    </form>
+
+    <!-- <div *ngIf="showSuccessBanner" class="success-banner">
+      ✅ Successfully logged in!
+    </div> -->
+  </div>
+</div>

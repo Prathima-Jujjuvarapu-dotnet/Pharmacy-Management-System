@@ -1,0 +1,113 @@
+<div class="register-container">
+  <div class="register-box">
+    <h2>Create Your Account</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register($event)">
+      
+      <div class="input-group">
+        <input type="text" formControlName="name" placeholder="Full Name" />
+        <small *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">Name is required.</small>
+      </div>
+
+      <div class="input-group">
+        <input type="email" formControlName="email" placeholder="Email Address" />
+        <small *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+          Valid email is required.
+        </small>
+      </div>
+
+      <div class="input-group">
+        <input type="text" formControlName="contact" placeholder="Phone Number" />
+        <small *ngIf="registerForm.get('contact')?.touched && registerForm.get('contact')?.errors?.['required']">
+          Phone number is required.
+        </small>
+        <small *ngIf="registerForm.get('contact')?.touched && registerForm.get('contact')?.errors?.['pattern']">
+          Phone number must start with 6-9 and be 10 digits.
+        </small>
+      </div>
+
+      <div class="input-group">
+        <input type="password" formControlName="password" placeholder="Password" />
+        <small *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+          Password is required.
+        </small>
+      </div>
+
+      <div class="input-group">
+        <select formControlName="role">
+          <option value="" disabled>Select Role</option>
+          <option value="Doctor">Doctor</option>
+          <option value="Admin">Admin</option>
+        </select>
+      </div>
+
+      <!-- Doctor Field -->
+      <div *ngIf="registerForm.get('role')?.value === 'Doctor'" class="input-group role-field">
+        <input type="text" formControlName="specialization" placeholder="Specialization" />
+        <small *ngIf="registerForm.get('specialization')?.touched && registerForm.get('specialization')?.invalid">
+          Specialization is required.
+        </small>
+      </div>
+
+      <!-- Admin Field -->
+      <div *ngIf="registerForm.get('role')?.value === 'Admin'" class="input-group role-field">
+        <select formControlName="adminRole">
+          <option value="" disabled>Select Admin Role</option>
+          <option value="DrugAdmin">Drug Admin</option>
+          <option value="OrderAdmin">Order Admin</option>
+          <option value="SupplierAdmin">Supplier Admin</option>
+          <option value="PaymentAdmin">Payment Admin</option>
+          <option value="SalesAdmin">Sales Admin</option>
+          <option value="SuperAdmin">Super Admin</option>
+        </select>
+        <small *ngIf="registerForm.get('adminRole')?.touched && registerForm.get('adminRole')?.invalid">
+          Admin role is required.
+        </small>
+      </div>
+
+      <!-- Avatar Selection -->
+      <div class="avatar-selection">
+        <label>Select an Avatar:</label>
+        <div class="avatar-grid">
+          <img
+            *ngFor="let avatar of avatars"
+            [src]="avatar"
+            [class.selected]="registerForm.get('selectedAvatar')?.value === avatar"
+            (click)="selectAvatar(avatar)"
+            alt="Avatar"
+          />
+        </div>
+      </div>
+
+      <!-- Image Upload -->
+      <div class="input-group">
+        <label>Or Upload Profile Image:</label>
+        <input type="file" (change)="onImageSelected($event)" />
+      </div>
+
+      <!-- Image Preview -->
+      <div class="input-group" *ngIf="registerForm.get('selectedAvatar')?.value || uploadedImage">
+        <label>Preview:</label>
+        <img
+          *ngIf="registerForm.get('selectedAvatar')?.value"
+          [src]="registerForm.get('selectedAvatar')?.value"
+          alt="Avatar Preview"
+          width="80"
+          height="80"
+          style="border-radius: 50%"
+        />
+        <img
+          *ngIf="uploadedImage && !registerForm.get('selectedAvatar')?.value"
+          [src]="uploadedImage | filePreview"
+          alt="Uploaded Preview"
+          width="80"
+          height="80"
+          style="border-radius: 50%"
+        />
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <a [routerLink]="['/login']">Already have an account? <strong>Login</strong></a>
+  </div>
+</div>

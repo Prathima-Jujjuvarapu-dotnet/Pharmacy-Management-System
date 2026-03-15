@@ -1,0 +1,75 @@
+.mobile-login-container {
+  height: 100vh;
+  background: url('https://wallpaperbat.com/img/9730815-pharmaceutical-manufacturing.jpg') no-repeat center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-login-wrapper {
+  width: 90%;
+  max-width: 400px;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.brand-logo {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.mobile-login-wrapper h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+.mobile-login-wrapper input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.mobile-login-wrapper button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-login-wrapper button:hover {
+  background-color: #0056b3;
+}
+
+.success-banner {
+  margin-top: 20px;
+  padding: 12px;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  font-weight: bold;
+}

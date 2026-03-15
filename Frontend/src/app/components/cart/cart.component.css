@@ -1,0 +1,185 @@
+.cart-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+}
+
+.cart-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.cart-table-container {
+  overflow-x: auto;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th, .cart-table td {
+  padding: 12px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.cart-table th {
+  background-color: var(--input-bg);
+  font-weight: bold;
+}
+
+.cart-drug-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.drug-name {
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.quantity-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.qty-btn {
+  background: var(--input-border);
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  color: var(--text-color);
+}
+
+.qty-btn:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+.quantity-input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.remove-btn {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  margin-left: 3rem;
+}
+
+.remove-btn:hover {
+  background: #e60000;
+}
+
+.total-amount {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+  margin-top: 20px;
+  color: var(--text-color);
+}
+
+.total-price {
+  color: #2d8f45;
+  font-size: 20px;
+}
+
+.order-payment-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.place-order-btn, .make-payment-btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+}
+
+.place-order-btn {
+  background: var(--accent-color);
+  color: white;
+}
+
+.place-order-btn:hover {
+  background: #0056b3;
+}
+
+.payment-section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.payment-section label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.payment-section .form-control {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  border: 1px solid var(--input-border);
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.upi-details {
+  margin-top: 10px;
+}
+
+.make-payment-btn {
+  background: #28a745;
+  color: white;
+}
+
+.make-payment-btn:hover {
+  background: #1e7e34;
+}
+.cart-page {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}

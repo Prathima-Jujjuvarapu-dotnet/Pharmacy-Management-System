@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: url('https://wallpaperbat.com/img/9730789-digital-health-in-pharma.png') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+:host::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--overlay-color, rgba(255, 255, 255, 0.6));
+  z-index: 0;
+}
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+.register-box {
+  background-color: var(--card-bg, #ffffff);
+  color: var(--text-color, #1e1e1e);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 420px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-color, #1e1e1e);
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--input-border, #ccc);
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: var(--input-bg, #fff);
+  color: var(--text-color, #1e1e1e);
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: var(--accent-color, #4e9eff);
+  box-shadow: 0 0 8px rgba(78, 158, 255, 0.3);
+  outline: none;
+}
+
+small {
+  color: #e74c3c;
+  font-size: 12px;
+  display: block;
+  margin-top: 4px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--accent-color, #4e9eff);
+  color: var(--button-text, #fff);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: skyblue;
+}
+
+a {
+  display: block;
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--accent-color, #4e9eff);
+  text-align: center;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: skyblue;
+}
+
+.avatar-selection {
+  margin: 1.5rem 0;
+}
+
+.avatar-selection label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.avatar-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.avatar-grid img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s ease;
+}
+
+.avatar-grid img.selected {
+  border: 3px solid var(--accent-color, #4e9eff);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .register-box {
+    padding: 1.5rem;
+    width: 90%;
+  }
+}

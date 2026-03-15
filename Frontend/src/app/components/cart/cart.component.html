@@ -1,0 +1,64 @@
+<div class="cart-container">
+  <h2 class="cart-title">🛒 Your Cart</h2>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    <p>Your cart is empty. Add some items to the cart first.</p>
+  </div>
+
+  <div *ngIf="cartItems.length > 0">
+    <div class="cart-table-container">
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Drug Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems; let i = index">
+            <td>
+              <img [src]="item.image" alt="{{ item.drugName }}" class="cart-drug-image" />
+            </td>
+            <td class="drug-name">{{ item.drugName }}</td>
+            <td>
+              <div class="quantity-container">
+                <button (click)="updateQuantity(i, { target: { value: item.quantity - 1 } })" class="qty-btn">➖</button>
+                <input 
+                  type="number" 
+                  [(ngModel)]="item.quantity" 
+                  (change)="updateQuantity(i, $event)" 
+                  min="1"
+                  class="quantity-input" />
+                <button (click)="updateQuantity(i, { target: { value: item.quantity + 1 } })" class="qty-btn">➕</button>
+              </div>
+            </td>
+            <td>{{ convertToNumber(item.price) | currency }}</td>
+            <td>{{ (convertToNumber(item.price) * item.quantity) | currency }}</td>
+            <td>
+              <button (click)="removeFromCart(item)" class="remove-btn">
+                🗑 Remove
+              </button>
+            </td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="total-amount">
+      <p><strong>Total Amount: </strong><span class="total-price">{{ calculateTotalAmount() | currency }}</span></p>
+    </div>
+
+    <div class="order-payment-buttons">
+      <button (click)="placeOrder()" class="place-order-btn">🛒 Place Order</button>
+      <button (click)="goToFakePayment()" class="make-payment-btn">💳 Make Payment</button>
+    </div> 
+    <div id="dropin-container" class="dropin-container"></div>
+    <div *ngIf="waitingForApproval" class="info-message">
+      {{ statusMessage }}
+    </div>       
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Login to continue managing your pharmacy</p>
+
+    <form (ngSubmit)="login($event)">
+      <input type="email" name="email" [(ngModel)]="email" placeholder="Email address" required />
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required />
+      <a [routerLink]="'/forgot-password'" class="auth-link">Forgot Password?</a>
+      <button type="submit">Login</button>
+    </form>
+
+    <div *ngIf="role === 'Doctor'" class="otp-section">
+      <p>Please verify with OTP</p>
+      <button *ngIf="!otpSent || countdown <= 0" (click)="sendOtp()">
+        {{ isOtpButtonDisabled ? 'Resend OTP in ' + formatTime() : 'Send OTP' }}
+      </button>
+      <div *ngIf="otpSent && countdown > 0" class="otp-timer">
+        OTP sent ✔ – Resend in <strong>{{ formatTime() }}</strong>
+      </div>
+      <div *ngIf="otpSent" class="otp-input">
+        <input type="text" [(ngModel)]="otp" placeholder="Enter OTP" />
+        <button (click)="verifyOtp()">Verify OTP</button>
+      </div>
+    </div>
+
+<!-- OR Separator -->
+<div class="or-separator"><span>OR</span></div>
+
+<!-- QR Icon with Label -->
+<div class="qr-login-mini" (click)="navigateToQrLogin()" title="Login with QR">
+  <div class="qr-symbol-wrapper">
+    <div class="qr-symbol-img"></div>
+  </div>
+  <div class="qr-label">Login with QR</div>
+</div>
+    <a [routerLink]="'/register'" class="auth-link">Don’t have an account? Register</a>
+  </div>
+</div>

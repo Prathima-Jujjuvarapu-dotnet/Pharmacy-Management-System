@@ -1,0 +1,11 @@
+<div class="app-container">
+  <!-- Sidebar should appear only if showSidebar is true -->
+   
+  <app-sidebar *ngIf="showSidebar"></app-sidebar> 
+
+  <div class="main-content">
+    <app-chatbot></app-chatbot>
+    <app-dark-mode-toggle></app-dark-mode-toggle>
+    <router-outlet></router-outlet> <!-- This will load Login, Home, Cart, etc. -->
+  </div>
+</div>

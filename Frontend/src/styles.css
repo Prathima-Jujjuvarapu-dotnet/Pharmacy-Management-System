@@ -1,0 +1,373 @@
+/* styles.css */
+/* styles.css or global.css */
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+ /* Light Theme (default) */
+body {
+  --bg-color: #f5f7fa;
+  --text-color: #1e1e1e;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #ccc;
+  --footer-bg: #f0f0f0;
+  --footer-text: #333333;
+  --accent-color: #4e9eff;
+  --overlay-color: rgba(255, 255, 255, 0.0); 
+
+}
+
+/* Dark Theme */
+body.dark-theme {
+  --bg-color: #1e1e2f;
+  --text-color: #e0e0e0;
+  --card-bg: #2a2a40;
+  --input-bg: #1e1e2f;
+  --input-border: #555;
+  --footer-bg: #1a1a2e;
+  --footer-text: #b0b0b0;
+  --accent-color: #4e9eff;
+  --overlay-color: rgba(0, 0, 0, 0.6);
+  --sidebar-bg: #1e1e2f;
+  --sidebar-text: #e0e0e0;
+  --sidebar-hover: #2a2a40;
+  
+}
+body.dark-theme .add-to-cart-btn {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+body.dark-theme .add-to-cart-btn:disabled {
+  background-color: #444;
+  color: #aaa;
+  cursor: not-allowed;
+}
+/* Define button variables */
+:root {
+  --btn-bg: var(--accent-color);
+  --btn-text: #ffffff;
+  --btn-hover-bg: #3a8ee6;
+}
+
+body.dark-theme {
+  --btn-bg: var(--accent-color);
+  --btn-text: #ffffff;
+  --btn-hover-bg: #1a73e8;
+}
+
+/* Apply styles */
+.add-to-cart-btn {
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
+  border: none;
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--btn-hover-bg);
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #555;
+  color: #aaa;
+  cursor: not-allowed;
+}
+body.dark-theme img {
+  filter: brightness(0.95) contrast(1.05);
+}
+:root {
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #333333;
+  --sidebar-hover: #f8f9fa;
+  --card-bg: #ffffff;
+  --input-border: #ddd;
+  --accent-color: #007bff;
+  /* --btn-bg: #007bff;
+  --btn-text: #ffffff;
+  --btn-hover-bg: #0056b3 */
+
+
+}
+
+body.dark-theme {
+  --sidebar-bg: #1e1e2f;
+  --sidebar-text: #e0e0e0;
+  --sidebar-hover: #2a2a40;
+  --card-bg: #2a2a40;
+  --input-border: #555;
+  --accent-color: #4e9eff;
+  /* --btn-bg: #4e9eff;
+  --btn-text: #ffffff;
+  --btn-hover-bg: #1a73e8; */
+
+}
+/* Only apply custom button styles in dark mode */
+body.dark-theme .add-to-cart-btn {
+  background-color: var(--btn-bg, #2a2a40);
+  color: var(--btn-text, #ffffff);
+  border: none;
+}
+
+body.dark-theme .add-to-cart-btn:hover {
+  background-color: var(--btn-hover-bg, black);
+}
+
+body,
+.cart-page,
+.main-content {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-theme .add-to-cart-btn {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid #aaa;
+}
+
+body.dark-theme .add-to-cart-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .add-to-cart-btn:disabled {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #444;
+  cursor: not-allowed;
+}
+body.dark-theme .dark-mode-toggle button {
+  color: var(--text-color); /* ensures icon/text is visible */
+  background-color: transparent;
+}
+
+body.dark-theme .dark-mode-toggle button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+body.dark-theme .chatbot-container {
+  background-color: #2a2a40;
+  color: #e0e0e0;
+  border: 1px solid #444;
+}
+
+body.dark-theme .chatbot-container .chat-message {
+  background-color: #1e1e2f;
+  color: #e0e0e0;
+}
+
+body.dark-theme .chatbot-container button {
+  background-color: transparent;
+  color: #e0e0e0;
+  border: 1px solid #555;
+}
+
+body.dark-theme .chatbot-container button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+/* Chatbot Widget - Dark Mode */
+body.dark-theme .chatbot-widget .chat-window {
+  background-color: #1e1e1e;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-theme .chatbot-widget .chat-header {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+body.dark-theme .chatbot-widget .chat-body {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+body.dark-theme .chatbot-widget .chat-message .bubble {
+  background-color: #3a3a3a;
+  color: #f0f0f0;
+}
+
+body.dark-theme .chatbot-widget .chat-message.user .bubble {
+  background-color: #2e6da4;
+}
+
+body.dark-theme .chatbot-widget .chat-message.intro {
+  background-color: #4a4a2a;
+  color: #f0e68c;
+}
+
+body.dark-theme .chatbot-widget .quick-buttons button {
+  background-color: #444;
+  color: #f0f0f0;
+}
+
+body.dark-theme .chatbot-widget .quick-buttons button:hover {
+  background-color: #666;
+}
+
+body.dark-theme .chatbot-widget .chat-input {
+  background-color: #1e1e1e;
+  border-top: 1px solid #444;
+}
+
+body.dark-theme .chatbot-widget .chat-input input {
+  background-color: #2a2a2a;
+  border: 1px solid #555;
+  color: #f0f0f0;
+}
+
+body.dark-theme .chatbot-widget .chat-input button {
+  background-color: #444;
+  color: #f0f0f0;
+}
+
+body.dark-theme .chatbot-widget .typing-indicator span {
+  background: #888;
+}
+/* Razorpay Container - Dark Mode */
+body.dark-theme .razorpay-container {
+  background: #1e1e1e;
+}
+
+/* Payment Box */
+body.dark-theme .razorpay-container .payment-box {
+  background: #2a2a2a;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Left Panel */
+body.dark-theme .razorpay-container .left-panel {
+  background: #1f5e30;
+  color: #ffffff;
+}
+
+/* Right Panel */
+body.dark-theme .razorpay-container .right-panel {
+  color: #f0f0f0;
+}
+
+/* Payment Methods */
+body.dark-theme .razorpay-container .payment-methods label {
+  color: #f0f0f0;
+}
+
+/* Pay Now Button */
+body.dark-theme .razorpay-container .pay-now-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+body.dark-theme .razorpay-container .pay-now-btn:hover {
+  background-color: #218838;
+}
+/* Payment Success - Dark Mode */
+body.dark-theme .success-container {
+  color: #f0f0f0;
+}
+
+body.dark-theme .success-container h2 {
+  color: #28a745; /* Keep the success green */
+}
+
+body.dark-theme .success-container p {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-theme .success-container p:hover {
+  background-color: #3a3a3a;
+}
+/* Payment Failure - Dark Mode */
+body.dark-theme .success-container {
+  color: #f0f0f0;
+}
+
+body.dark-theme .success-container h2 {
+  color: #dc3545; /* red for failure */
+}
+
+body.dark-theme .success-container p {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-theme .success-container p:hover {
+  background-color: #3a3a3a;
+}
+/* Payment Failure - Dark Mode */
+body.dark-theme .success-container {
+  color: #f0f0f0;
+}
+
+body.dark-theme .success-container h2 {
+  color: #dc3545; /* red for failure */
+}
+
+body.dark-theme .success-container p {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-theme .success-container p:hover {
+  background-color: #3a3a3a;
+}
+/* Light mode (default) */
+.status-container {
+  background-color: #f8f9fa; /* same as bg-light */
+}
+
+/* Dark mode override */
+body.dark-theme .status-container {
+  background-color: #1e1e1e;
+}
+
+body.dark-theme .status-container p {
+  color: #f0f0f0;
+}
+
+body.dark-theme .status-container .text-success {
+  color: #28a745 !important;
+}
+
+body.dark-theme .status-container .text-danger {
+  color: #dc3545 !important;
+}
+
+body.dark-theme .status-container .text-primary {
+  color: #3a8ee6 !important;
+}
+body.dark-theme .qr-symbol-img {
+  filter: brightness(1.1) contrast(1.2);
+}
+/* QR Component - Dark Mode Enhancements */
+body.dark-theme .qr-symbol-img {
+  filter: brightness(1.1) contrast(1.2);
+}
+
+body.dark-theme .qr-symbol-wrapper {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+/* Prevent dark theme filter on QR code */
+body.dark-theme .qr-symbol-img {
+  filter: none !important;
+}

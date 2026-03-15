@@ -1,0 +1,128 @@
+:host {
+  display: block;
+  height: 100vh;
+  background: url('https://img.pikbest.com/backgrounds/20250219/purple-neon-floor-ai-background-technology_11539896.jpg!w700wp') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+:host::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.auth-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.auth-card {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  animation: fadeIn 0.5s ease-in-out;
+  border: 1px solid #e0e0e0;
+}
+
+h2 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #7f8c8d;
+  margin-bottom: 1.5rem;
+  font-size: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #34495e;
+}
+
+input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: 0.3s;
+  background-color: #f9f9f9;
+}
+
+input:focus {
+  border-color: #7e57c2;
+  box-shadow: 0 0 6px rgba(126, 87, 194, 0.4);
+  outline: none;
+  background-color: #fff;
+}
+
+button {
+  width: 100%;
+  background-color: #7e57c2;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #9575cd;
+}
+
+.auth-link {
+  display: block;
+  margin-top: 20px;
+  color: #7e57c2;
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.auth-link:hover {
+  color: #9575cd;
+  text-decoration: underline;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.5rem;
+    width: 90%;
+  }
+}

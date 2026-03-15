@@ -1,0 +1,24 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2>Reactivate Your Account</h2>
+    <p class="subtitle">Please enter your registered email and phone number</p>
+
+    <form [formGroup]="reactivateForm" (ngSubmit)="reactivateAccount()">
+      <label>Email:</label>
+      <input type="email" formControlName="email" placeholder="Enter your email" />
+
+      <label>Registered Phone Number:</label>
+      <input type="text" formControlName="phoneNumber" placeholder="Enter your phone number" />
+      <small *ngIf="reactivateForm.get('phoneNumber')?.touched && reactivateForm.get('phoneNumber')?.errors?.['required']">
+        Phone number is required.
+      </small>
+      <small *ngIf="reactivateForm.get('phoneNumber')?.touched && reactivateForm.get('phoneNumber')?.errors?.['pattern']">
+        Phone number must start with 6–9 and be 10 digits.
+      </small>
+
+      <button type="submit">Reactivate</button>
+    </form>
+
+    <a class="auth-link" [routerLink]="['/login']">Back to Login</a>
+  </div>
+</div>

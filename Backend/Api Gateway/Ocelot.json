@@ -1,0 +1,154 @@
+{
+    
+    "Routes": [
+        {
+            "DownstreamPathTemplate": "/api/Auth/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5241
+                }
+            ],
+            "UpstreamPathTemplate": "/Auth/{everything}",
+            "UpstreamHttpMethod": [ "POST","GET","DELETE","PATCH" ]
+        },
+         {
+            "DownstreamPathTemplate": "/api/Notification/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5241
+                }
+            ],
+            "UpstreamPathTemplate": "/Notification/{everything}",
+            "UpstreamHttpMethod": [ "POST","GET","PUT","PATCH","DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/UserProfile/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5241
+                }
+            ],
+            "UpstreamPathTemplate": "/UserProfile/{everything}",
+            "UpstreamHttpMethod": [ "POST","GET","PUT","PATCH","DELETE" ]
+        },
+          {
+            "DownstreamPathTemplate": "/api/Chat/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5241
+                }
+            ],
+            "UpstreamPathTemplate": "/Chat/{everything}",
+            "UpstreamHttpMethod": [ "POST","GET","PUT","PATCH","DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/SuperAdmin/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5241
+                }
+            ],
+            "UpstreamPathTemplate": "/SuperAdmin/{everything}",
+            "UpstreamHttpMethod": [ "POST","GET","POST","PUT","DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/Drug/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5079
+                }
+            ],
+            "UpstreamPathTemplate": "/Drug/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/Inventory/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5103
+                }
+            ],
+            "UpstreamPathTemplate": "/Inventory/{everything}",
+            "UpstreamHttpMethod": [ "GET", "PUT" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/Order/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5224
+                }
+            ],
+            "UpstreamPathTemplate": "/Order/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT","DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/Payment/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5137
+                }
+            ],
+            "UpstreamPathTemplate": "/Payment/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/Sales/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5260
+                }
+            ],
+            "UpstreamPathTemplate": "/Sales/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST","PUT","DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/Supplier/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5008
+                }
+            ],
+            "UpstreamPathTemplate": "/Supplier/{everything}",
+            "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/profile-images/{**catch-all}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 5241
+               }
+        ],
+        "UpstreamPathTemplate": "/profile-images/{**catch-all}",
+        "UpstreamHttpMethod": [ "GET" ]
+
+        }
+
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:5127"
+    }
+}

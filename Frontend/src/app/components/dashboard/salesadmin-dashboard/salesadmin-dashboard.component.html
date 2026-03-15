@@ -1,0 +1,93 @@
+<app-profile-sidebar [email]="email"></app-profile-sidebar>
+<div class="p-6 space-y-8">
+
+    <!-- All Sales -->
+    <section *ngIf="currentView === 'dashboard'" class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-semibold mb-4">📊 All Sales</h2>
+      <!-- Inside All Sales view -->
+    <button (click)="downloadAllSales()" class="bg-indigo-600 text-white px-4 py-2 rounded mb-4 hover:bg-indigo-700">
+        ⬇️ Download CSV
+    </button>
+    <button (click)="downloadSalesPDF()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+        🧾 Download PDF
+      </button>
+      <div class="overflow-auto">
+        <table class="min-w-full text-sm text-left border">
+          <thead class="bg-gray-100 text-gray-700 uppercase">
+            <tr>
+              <th class="px-4 py-2">Drug</th>
+              <th class="px-4 py-2">Quantity</th>
+              <th class="px-4 py-2">Price</th>
+              <th class="px-4 py-2">Total</th>
+              <th class="px-4 py-2">Date</th>
+              <th class="px-4 py-2">Doctor</th>
+              <th class="px-4 py-2">Image</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sale of allSales" class="border-t hover:bg-gray-50">
+              <td class="px-4 py-2">{{ sale.drugName }}</td>
+              <td class="px-4 py-2">{{ sale.quantity }}</td>
+              <td class="px-4 py-2">₹{{ sale.price }}</td>
+              <td class="px-4 py-2">₹{{ sale.total }}</td>
+              <td class="px-4 py-2">{{ sale.saleDate | date:'medium' }}</td>
+              <td class="px-4 py-2">{{ sale.doctor?.name || 'N/A' }}</td>
+              <td class="px-4 py-2">
+                <img [src]="sale.image" alt="Drug" class="w-16 h-16 object-contain rounded border" />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  
+    <!-- Doctor Sales -->
+    <section *ngIf="currentView === 'doctorsales'" class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-semibold mb-4">👨‍⚕️ Doctor Sales</h2>
+      <div class="flex items-center gap-4 mb-4">
+        <input [(ngModel)]="selectedDoctorEmail" placeholder="Enter Doctor Email" class="border px-4 py-2 rounded w-1/2" />
+        <button (click)="getDoctorSales()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+          Search
+        </button>
+      </div>
+      <div *ngFor="let sale of doctorSales" class="border rounded-lg p-4 mb-4 shadow">
+        <p><strong>Drug:</strong> {{ sale.drugName }}</p>
+        <p><strong>Quantity:</strong> {{ sale.quantity }}</p>
+        <p><strong>Price:</strong> ₹{{ sale.price }}</p>
+        <p><strong>Total:</strong> ₹{{ sale.total }}</p>
+        <p><strong>Date:</strong> {{ sale.saleDate | date:'medium' }}</p>
+        <p><strong>Doctor:</strong> {{ sale.doctor?.name || 'N/A' }}</p>
+        <img *ngIf="sale.image" [src]="sale.image" alt="Drug" class="mt-3 w-24 h-24 object-contain rounded border" />
+      </div>
+    </section>
+  
+    <!-- Drug Sales -->
+    <section *ngIf="currentView === 'drugsales'" class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-semibold mb-4">💊 Drug Sales</h2>
+      <div class="flex items-center gap-4 mb-4">
+        <input [(ngModel)]="selectedDrugName" placeholder="Enter Drug Name" class="border px-4 py-2 rounded w-1/2" />
+        <button (click)="getDrugSales()" class="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700">
+          Search
+        </button>
+      </div>
+      <div *ngFor="let sale of drugSales" class="border rounded-lg p-4 mb-4 shadow">
+        <p><strong>Drug:</strong> {{ sale.drugName }}</p>
+        <p><strong>Quantity:</strong> {{ sale.quantity }}</p>
+        <p><strong>Price:</strong> ₹{{ sale.price }}</p>
+        <p><strong>Total:</strong> ₹{{ sale.total }}</p>
+        <p><strong>Date:</strong> {{ sale.saleDate | date:'medium' }}</p>
+        <p><strong>Doctor:</strong> {{ sale.doctor?.name || 'N/A' }}</p>
+        <img *ngIf="sale.image" [src]="sale.image" alt="Drug" class="mt-3 w-24 h-24 object-contain rounded border" />
+      </div>
+    </section>
+  
+    <!-- High Demand Drugs -->
+    <section *ngIf="currentView === 'highdemanddrugs'" class="bg-white p-6 rounded shadow">
+      <h2 class="text-2xl font-semibold mb-4">🔥 High Demand Drugs</h2>
+      <ul class="list-disc list-inside text-lg">
+        <li *ngFor="let drug of highDemandDrugs" class="mb-1">{{ drug }}</li>
+      </ul>
+    </section>
+  
+  </div>
+  

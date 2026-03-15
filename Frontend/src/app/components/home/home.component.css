@@ -1,0 +1,352 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px 0;
+  font-size: 18px;
+}
+
+.sidebar a {
+  color: var(--sidebar-text);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.sidebar a:hover {
+  color: var(--accent-color);
+}
+
+.logout-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #3a8ee6;
+}
+
+.home-page {
+  padding: 20px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.search-bar {
+  width: 80%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid var(--input-border);
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.drug-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+.drug-list-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.drug-card {
+  background-color: var(--card-bg);
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.drug-image {
+  height: 150px;
+  background-color: var(--input-bg);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+
+.add-to-cart {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+  background-color: #3a8ee6;
+}
+.out-of-stock-label {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+:host-context(.dark-theme) .add-to-cart-btn:disabled {
+  background-color: #555; /* darker gray for dark mode */
+  color: #999;
+}
+.add-to-cart-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #3a8ee6;
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #555;
+  color: #aaa;
+  cursor: not-allowed;
+}
+.add-to-cart-btn {
+  background-color: transparent;
+  color: var(--text-color);
+  border: 1px solid black;
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.add-to-cart-btn:disabled {
+  background-color: #eee;
+  color: #aaa;
+  border: 1px solid #ccc;
+  cursor: not-allowed;
+}
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-bell {
+  position: relative;
+  cursor: pointer;
+  font-size: 24px;
+  color: #333;
+  transition: transform 0.3s ease;
+}
+
+.notification-bell:hover {
+  transform: scale(1.1);
+}
+
+.badge {
+  background-color: #dc3545;
+  color: white;
+  border-radius: 50%;
+  padding: 3px 7px;
+  font-size: 12px;
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  font-weight: bold;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 320px;
+  max-height: 350px;
+  overflow-y: auto;
+  z-index: 1000;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: #444;
+}
+
+.notification-item.unread {
+  background-color: #f5f8ff;
+  font-weight: 500;
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.notification-icon {
+  font-size: 18px;
+  color: #0078D4;
+}
+
+.notification-message {
+  margin: 0;
+  font-weight: 500;
+}
+
+.notification-time {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.mark-read-btn {
+  background-color: #0078D4;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mark-read-btn:hover {
+  background-color: #005A9E;
+}
+
+
+.notification-item {
+  padding: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  color: #444;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-item.unread {
+  background-color: #f5f8ff;
+  font-weight: 500;
+}
+
+.notification-icon {
+  font-size: 18px;
+  color: #0078D4;
+  margin-right: 8px;
+}
+
+.notification-message {
+  flex-grow: 1;
+}
+
+.notification-time {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+.mark-read-btn {
+  background-color: #0078D4;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mark-read-btn:hover {
+  background-color: #005A9E;
+}
+
+.notify-me-btn {
+  background-color: #ffc107;
+  border: none;
+  padding: 8px 14px;
+  margin-top: 5px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.notify-me-btn:hover {
+  background-color: #e0a800;
+}
+
+.search-bar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.notification-dropdown {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: dropdownFade 0.3s ease forwards;
+}
+
+@keyframes dropdownFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

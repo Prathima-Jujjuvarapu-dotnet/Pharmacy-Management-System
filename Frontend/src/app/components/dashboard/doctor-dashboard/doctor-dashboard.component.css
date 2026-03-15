@@ -1,0 +1,32 @@
+.dashboard-container {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--sidebar-bg, #1e3a5f);
+  color: var(--sidebar-text, white);
+  padding-top: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px; /* Match sidebar width */
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Home Page Override */
+.home-page {
+  margin-left: 0;
+  padding: 20px;
+}

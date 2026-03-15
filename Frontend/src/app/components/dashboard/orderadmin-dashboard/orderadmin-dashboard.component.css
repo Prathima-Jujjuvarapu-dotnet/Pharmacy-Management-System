@@ -1,0 +1,150 @@
+.orderadmin-container {
+    padding: 30px 20px;
+    max-width: 1200px;
+    margin: auto;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f3f6f9;
+  }
+  
+  .page-title {
+    font-size: 26px;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .order-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    margin-bottom: 32px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .order-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+  
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .header-right {
+    font-size: 14px;
+    color: #6b7280;
+    align-self: center;
+  }
+  
+  .status-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  
+  select {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #cbd5e0;
+    background: white;
+    font-size: 14px;
+    outline: none;
+    min-width: 120px;
+  }
+  
+  .submit-btn {
+    background-color: #3b82f6;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background-color: #2563eb;
+  }
+  
+  .order-body {
+    padding-top: 10px;
+  }
+  
+  .drug-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .drug-item {
+    background: #f9fafb;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    width: 260px;
+    transition: transform 0.2s;
+  }
+  
+  .drug-item:hover {
+    transform: scale(1.02);
+  }
+  
+  .drug-item img {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-right: 14px;
+    border: 1px solid #ccc;
+  }
+  
+  .info h4 {
+    font-size: 15px;
+    margin: 0 0 6px 0;
+    color: #1a202c;
+  }
+  
+  .info p {
+    margin: 2px 0;
+    font-size: 13px;
+    color: #4a5568;
+  }
+  /* Toast base style */
+.custom-toast {
+    border-radius: 10px !important;
+    padding: 14px 18px !important;
+    font-size: 15px;
+    color: #fff !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Toast styles by status */
+  .toast-approved {
+    background-color: #3b82f6 !important; /* Blue */
+  }
+  
+  .toast-rejected {
+    background-color: #ef4444 !important; /* Red */
+  }
+  
+  .toast-pending {
+    background-color: #f59e0b !important; /* Yellow/Orange */
+  }
+  

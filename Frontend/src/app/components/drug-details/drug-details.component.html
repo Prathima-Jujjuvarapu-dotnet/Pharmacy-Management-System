@@ -1,0 +1,112 @@
+<div *ngIf="drug">
+  <div class="product-page">
+  <!-- Left: Product Image -->
+  <div class="product-image">
+    <img [src]="drug.image || 'assets/default-medicine.jpg'" alt="{{ drug.name }}" />
+  </div>
+
+  <!-- Right: Product Details -->
+  <div class="product-details">
+    <h1>{{ drug.name }}</h1>
+    <p class="price">₹{{ drug.price }} <span class="unit">for {{drug.quantityPerPack}} tablets</span></p>
+
+    <p class="stock" [ngClass]="{ 'out-of-stock': drug.quantity === 0 }">
+      {{ drug.quantity === 0 ? 'Out of Stock' : 'In Stock: ' + drug.quantity }}
+    </p>
+
+    <!-- ⭐ Ratings -->
+    <div class="ratings">
+      <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= drug.rating">★</span>
+      <span class="rating-count">{{drug.rating}}</span>
+      <span class="rating-count">({{ drug.reviewCount }} reviews)</span>
+    </div>
+
+    <!-- 🧾 Tabs -->
+    <div class="tabs">
+      <button (click)="activeTab = 'description'" [class.active]="activeTab === 'description'">Description</button>
+      <button (click)="activeTab = 'ingredients'" [class.active]="activeTab === 'ingredients'">Ingredients</button>
+      <button (click)="activeTab = 'storage'" [class.active]="activeTab === 'storage'">Storage & Warnings</button>
+    </div>
+
+    <div class="tab-content">
+      <div *ngIf="activeTab === 'description'">
+        <p>{{ drug.description }}</p>
+      </div>
+      <div *ngIf="activeTab === 'ingredients'">
+        <p>{{drug.ingredients}}</p>
+      </div>
+      <div *ngIf="activeTab === 'storage'">
+        <p><strong>Manufacturer:</strong> {{ drug.manufacturer }}</p>
+        <p><strong>Storage:</strong> {{drug.storage}}</p>
+        <p><strong>Warning:</strong> {{drug.warnings}}</p>
+      </div>
+    </div>
+
+    <!-- 🛒 Actions -->
+    <div class="actions">
+      <button class="add-to-cart" [disabled]="drug.quantity === 0" (click)="addToCart(drug)">🛒 Add to Cart</button>
+      <button *ngIf="drug.quantity === 0" class="notify-me" (click)="notifyMe(drug)">🔔 Notify Me</button>
+      <button class="back-btn" (click)="goBack()">← Continue Shopping</button>
+    </div>
+  </div>
+</div>
+<!-- 📝 Customer Reviews Section -->
+<div class="review-section">
+  <h2>Community Activity</h2>
+  <p class="review-count">{{ reviews.length }} Reviews</p>
+
+  <!-- Existing Reviews -->
+  <div *ngIf="reviews.length > 0; else noReviews">
+    <div *ngFor="let r of reviews" class="review-card">
+      <div class="review-header">
+        <div class="stars">
+          <span *ngFor="let star of [1,2,3,4,5]" class="star" [class.filled]="star <= r.rating">★</span>
+        </div>
+        <span class="review-user">{{ getMaskedEmail(r.userEmail) }}</span>
+        <span class="verified-tag">✔ Verified Purchase</span>
+        <span class="review-date">{{ r.date | date: 'MMM d, y' }}</span>
+      </div>
+      <h4 class="review-title">Customer</h4>
+      <p class="review-comment">“{{ r.comment }}”</p>
+    </div>
+  </div>
+
+  <ng-template #noReviews>
+    <p>No reviews yet. Be the first to review!</p>
+  </ng-template>
+
+  <!-- ✍️ Add Review Form -->
+  <div class="add-review-form">
+    <h3>Add Your Review</h3>
+    <div class="form-group">
+      <label for="rating">Rating:</label>
+      <select id="rating" [(ngModel)]="newReview.rating">
+        <option *ngFor="let r of [1,2,3,4,5]" [value]="r">{{ r }} Star{{ r > 1 ? 's' : '' }}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">Comment:</label>
+      <textarea id="comment" [(ngModel)]="newReview.comment" placeholder="Write your feedback..."></textarea>
+    </div>
+
+    <button class="submit-btn" (click)="submitReview()">Submit Review</button>
+  </div>
+</div>
+
+
+
+<!-- 🧠 Related Products Carousel -->
+<div class="related-products">
+  <h2>Related Products</h2>
+  <div class="carousel">
+    <div class="related-card" *ngFor="let item of relatedDrugs">
+      <img [src]="item.image || 'assets/default-medicine.jpg'" alt="{{ item.name }}" />
+      <p class="name">{{ item.name }}</p>
+      <p class="price">₹{{ item.price }}</p>
+      <button (click)="goToDrugDetails(item)">View</button>
+    </div>
+  </div>
+</div>
+
+</div>

@@ -1,0 +1,25 @@
+.dark-mode-toggle {
+  position: fixed;
+  top: 0.01px;
+  right: 1240px; /* changed from left to right */
+  z-index: 1000;
+
+}
+
+.dark-mode-toggle button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 2px;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode-toggle button.dark:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

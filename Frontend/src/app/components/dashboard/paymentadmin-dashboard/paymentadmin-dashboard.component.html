@@ -1,0 +1,66 @@
+
+<app-profile-sidebar [email]="email"></app-profile-sidebar>
+<div class="dashboard-container">
+    <!-- All Payments View -->
+    <div *ngIf="selectedView === 'all'" class="section">
+      <h2 class="section-title">📋 All Payments</h2>
+      <div class="table-container">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Payment ID</th>
+              <th>Order ID</th>
+              <th>Doctor</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of allPayments">
+              <td>#{{ payment.paymentId }}</td>
+              <td>{{ payment.orderId }}</td>
+              <td>{{ payment.doctorName }}</td>
+              <td>₹{{ payment.amount }}</td>
+              <td>{{ payment.paymentDate | date: 'medium' }}</td>
+              <td>
+                <span [ngClass]="payment.isVerified ? 'badge verified' : 'badge unverified'">
+                  {{ payment.isVerified ? '✅ Verified' : '❌ Not Verified' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Unverified Payments View -->
+    <div *ngIf="selectedView === 'unverified'" class="section">
+      <h2 class="section-title">🔍 Unverified Payments</h2>
+      <div class="table-container">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Payment ID</th>
+              <th>Order ID</th>
+              <th>Amount</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of unverifiedPayments">
+              <td>#{{ payment.paymentId }}</td>
+              <td>{{ payment.orderId }}</td>
+              <td>₹{{ payment.amount }}</td>
+              <td>
+                <button class="btn verify-btn" (click)="verifyPayment(payment.paymentId)">
+                  ✅ Verify
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

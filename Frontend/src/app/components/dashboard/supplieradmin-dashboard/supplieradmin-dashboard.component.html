@@ -1,0 +1,179 @@
+<app-profile-sidebar [email]="email"></app-profile-sidebar>
+<div class="supplieradmin-container">
+
+    <!-- INVENTORY SECTION -->
+    <div *ngIf="router.url.endsWith('/inventory')" class="tab-content">
+      <h2>📦 Inventory Management</h2>
+  
+      <!-- Search & Load -->
+      <div class="actions">
+        <input [(ngModel)]="selectedDrugName" placeholder="🔍 Enter drug name" />
+        <button (click)="getInventoryByDrug()">Search</button>
+        <button (click)="getAllInventory()">Load All</button>
+      </div>
+  
+      <!-- Inventory Table -->
+      <div class="inventory-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Drug Name</th>
+              <th>Stock</th>
+              <th>Price</th>
+              <th>Expiry</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of inventory">
+              <tr>
+                <td><img [src]="item.image" alt="Drug Image" width="50" height="50" /></td>
+                <td>{{ item.drugName }}</td>
+                <td>{{ item.stockQuantity }}</td>
+                <td>{{ item.pricePerUnit }}</td>
+                <td>{{ item.expiryDate }}</td>
+                <td>
+                  <button (click)="toggleUpdate(item.drugName)">Update</button>
+                </td>
+              </tr>
+  
+              <!-- Inline Update Form -->
+              <tr *ngIf="selectedDrugToUpdate === item.drugName">
+                <td colspan="6">
+                  <div class="update-forms">
+                    <input type="number" [(ngModel)]="stockUpdate" placeholder="New Stock" />
+                    <input type="number" [(ngModel)]="priceUpdate" placeholder="New Price" />
+                    <input type="text" [(ngModel)]="expiryUpdate" placeholder="New Expiry Date" />
+                    <button (click)="updateStock()">Update Stock</button>
+                    <button (click)="updatePrice()">Update Price</button>
+                    <button (click)="updateExpiry()">Update Expiry</button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- SUPPLIER SECTION -->
+    <div *ngIf="router.url.endsWith('/supplier')" class="tab-content">
+      <h2>🏢 Supplier Management</h2>
+  
+      <!-- Search & Load -->
+      <div class="actions">
+        <input [(ngModel)]="selectedSupplierName" placeholder="🔍 Enter supplier name" />
+        <button (click)="getSupplierByName()">Search</button>
+        <button (click)="getAllSuppliers()">Load All</button>
+      </div>
+  
+      <!-- Add / Update Form -->
+      <form class="supplier-form">
+        <input [(ngModel)]="newSupplier.name" placeholder="Name" name="name" />
+        <input [(ngModel)]="newSupplier.contactInfo" placeholder="Contact Info" name="contactInfo" />
+        <input [(ngModel)]="newSupplier.email" placeholder="Email" name="email" />
+        <input [(ngModel)]="newSupplier.address" placeholder="Address" name="address" />
+      </form>
+  
+      <div class="supplier-buttons">
+        <button (click)="addSupplier()">Add</button>
+        <button (click)="updateSupplier()">Update</button>
+        <button (click)="confirmDelete()">Delete</button>
+      </div>
+  
+      <!-- Supplier Table -->
+      <div class="supplier-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Email</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let supplier of suppliers">
+              <td>{{ supplier.name }}</td>
+              <td>{{ supplier.contactInfo }}</td>
+              <td>{{ supplier.email }}</td>
+              <td>{{ supplier.address }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- SUPPLIER DRUG ASSOCIATION SECTION -->
+    <div *ngIf="router.url.endsWith('/supplierdrug')" class="tab-content">
+      <h2>💊 Supplier Drug Associations</h2>
+  
+      <div class="actions">
+        <input [(ngModel)]="selectedSupplierName" placeholder="Supplier Name" />
+        <input [(ngModel)]="selectedDrugName" placeholder="Drug Name" />
+        <button (click)="addDrugToSupplier()">Add Drug</button>
+        <button (click)="removeDrugFromSupplier()">Remove Drug</button>
+        <button (click)="getSupplierDrugs()">View Supplier's Drugs</button>
+        <button (click)="loadAllSuppliersDrugs()">View All</button>
+      </div>
+  
+      <!-- Supplier-Drug Table -->
+      <div class="supplierdrug-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Drug Image</th>
+              <th>Drug Name</th>
+              <th>Supplier Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sd of supplierDrugs">
+              <td>
+                <img [src]="sd.image || 'assets/default-drug.png'" alt="Drug Image" width="50" height="50" />
+              </td>
+              <td>{{ sd.drugName }}</td>
+              <td>{{ sd.supplierName }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+      <!-- STOCK ALERTS SECTION -->
+    <!-- STOCK ALERTS SECTION -->
+    <div *ngIf="router.url.endsWith('/stockalerts')" class="tab-content">
+      <h2>⚠️ Stock Alerts</h2>
+    
+      <div *ngIf="alerts.length > 0; else noAlerts" class="alerts-grid">
+        <div *ngFor="let alert of alerts" class="alert-card">
+          <div class="alert-image">
+            <img [src]="alert.image" [alt]="alert.drugName" />
+          </div>
+          <div class="alert-details">
+            <h3>{{ alert.drugName }}</h3>
+            <p class="message">{{ alert.message }}</p>
+            <p class="date">📅 {{ alert.alertDate | date: 'medium' }}</p>
+    
+            <span [ngClass]="{'status-resolved': alert.isResolved, 'status-unresolved': !alert.isResolved}" class="status-badge">
+              {{ alert.isResolved ? '✅ Resolved' : '❗ Unresolved' }}
+            </span>
+    
+            <!-- Action buttons -->
+            <div class="alert-actions">
+              <button *ngIf="!alert.isResolved" (click)="markAsResolved(alert.drugName)">✔ Mark as Resolved</button>
+              <button class="delete-btn" (click)="deleteAlert(alert.drugName)">🗑 Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <ng-template #noAlerts>
+        <div class="no-alerts">
+          <p>No stock alerts at the moment. ✅</p>
+        </div>
+      </ng-template>
+    </div>      
+</div>
+  
+  

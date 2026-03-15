@@ -1,0 +1,66 @@
+.razorpay-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  background: #f4f7fa;
+}
+
+.payment-box {
+  display: flex;
+  width: 800px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.left-panel {
+  flex: 1;
+  background: #2d8f45;
+  color: white;
+  padding: 30px;
+}
+
+.left-panel h2 {
+  margin-bottom: 10px;
+}
+
+.right-panel {
+  flex: 2;
+  padding: 30px;
+}
+
+.payment-methods label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.payment-methods img {
+  width: 24px;
+  height: 24px;
+}
+
+.upi-options {
+  margin-top: 15px;
+}
+
+.pay-now-btn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.pay-now-btn:hover {
+  background-color: #218838;
+}

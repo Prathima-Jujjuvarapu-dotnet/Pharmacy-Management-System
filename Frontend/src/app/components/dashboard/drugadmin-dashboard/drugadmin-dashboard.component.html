@@ -1,0 +1,95 @@
+<app-profile-sidebar [email]="email"></app-profile-sidebar>
+
+<div class="dashboard-container">
+  <h2>Drug Admin Dashboard</h2>
+
+  <!-- Search Bar -->
+  <input type="text" [(ngModel)]="searchTerm" placeholder="Search drugs..." class="search-bar" />
+
+  <!-- Drug Form -->
+  <form [formGroup]="drugForm" (ngSubmit)="onSubmit()" class="drug-form">
+    <div class="form-section">
+      <input formControlName="name" placeholder="Drug Name" />
+      <input formControlName="manufacturer" placeholder="Manufacturer" />
+      <input formControlName="description" placeholder="Description" />
+      <input formControlName="price" type="number" placeholder="Price" />
+      <input formControlName="quantity" type="number" placeholder="Quantity" />
+      <input formControlName="image" placeholder="Image URL" />
+      <input formControlName="expiryDate" type="date" placeholder="Expiry Date" />
+    </div>
+
+    <div class="form-section">
+      <input formControlName="rating" type="number" placeholder="Rating" />
+      <input formControlName="reviewCount" type="number" placeholder="Review Count" />
+      <input formControlName="ingredients" placeholder="Ingredients" />
+      <input formControlName="storage" placeholder="Storage Instructions" />
+      <input formControlName="warnings" placeholder="Warnings" />
+      <input formControlName="quantityPerPack" placeholder="Quantity Per Pack" />
+      <input formControlName="category" placeholder="Category" />
+      <input formControlName="usage" placeholder="Usage Instructions" />
+      <label class="checkbox-label">
+        <input type="checkbox" formControlName="prescriptionRequired" />
+        Prescription Required
+      </label>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">{{ isEditMode ? 'Update Drug' : 'Add Drug' }}</button>
+      <button type="button" *ngIf="isEditMode" (click)="resetForm()">Cancel</button>
+    </div>
+  </form>
+
+  <!-- Drug List -->
+  <div class="drug-list">
+    <h3>All Drugs</h3>
+    <div *ngIf="filteredDrugs.length === 0">No drugs found.</div>
+
+    <div class="drug-grid">
+      <div *ngFor="let drug of filteredDrugs | slice:(currentPage-1)*pageSize:(currentPage)*pageSize" class="drug-card">
+        <img [src]="drug.image || defaultImage" alt="{{ drug.name }}" />
+        <div class="details">
+          <h4>{{ drug.name }}</h4>
+          <p><strong>Manufacturer:</strong> {{ drug.manufacturer }}</p>
+          <p><strong>Description:</strong> {{ drug.description }}</p>
+          <p><strong>Price:</strong> ₹{{ drug.price }}</p>
+          <p><strong>Quantity:</strong> {{ drug.quantity }}</p>
+          <p><strong>Status:</strong>
+            <span [class.in-stock]="drug.quantity > 0" [class.out-of-stock]="drug.quantity === 0">
+              {{ drug.quantity > 0 ? 'In Stock' : 'Out of Stock' }}
+            </span>
+          </p>
+          <p><strong>Rating:</strong>
+          <span class="stars">
+            <ng-container *ngFor="let star of [1,2,3,4,5]">
+              <span [class.filled]="drug.rating >= star">★</span>
+            </ng-container>
+            <span class="rating-value">({{ drug.rating }})</span>
+          </span>
+        </p>
+
+          <p><strong>Review Count:</strong> {{ drug.reviewCount }}</p>
+          <p><strong>Ingredients:</strong> {{ drug.ingredients }}</p>
+          <p><strong>Storage:</strong> {{ drug.storage }}</p>
+          <p><strong>Warnings:</strong> {{ drug.warnings }}</p>
+          <p><strong>Quantity Per Pack:</strong> {{ drug.quantityPerPack }}</p>
+          <p><strong>Expiry Date:</strong> {{ drug.expiryDate }}</p>
+          <p><strong>Prescription Required:</strong> {{ drug.prescriptionRequired ? 'Yes' : 'No' }}</p>
+          <p><strong>Category:</strong> {{ drug.category }}</p>
+          <p><strong>Usage:</strong> {{ drug.usage }}</p>
+
+          <div class="actions">
+            <button (click)="onEdit(drug)">Edit</button>
+            <button class="delete-btn" (click)="onDelete(drug.name)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination">
+    <button (click)="currentPage = currentPage - 1" [disabled]="currentPage === 1">Prev</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="currentPage = currentPage + 1" [disabled]="currentPage === totalPages">Next</button>
+  </div>
+</div>

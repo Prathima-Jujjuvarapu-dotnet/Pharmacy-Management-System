@@ -1,0 +1,61 @@
+<app-profile-sidebar [email]="email"></app-profile-sidebar>
+<div class="orderadmin-container">
+    <div class="page-title">
+      {{ isDeliveryView ? '🚚 Delivery Update' : '🧾 Manage Orders' }}
+    </div>
+  
+    <div class="order-card" *ngFor="let order of filteredOrders">
+      <div class="order-header">
+        <div class="header-left">
+          <div><strong>Order ID:</strong> {{ order.orderId }}</div>
+          <div><strong>Doctor:</strong> {{ order.doctorName }}</div>
+          <div><strong>Payment Verified:</strong>
+            <span [ngClass]="{ 'verified': order['isVerified'], 'not-verified': !order['isVerified'] }">
+              {{ order['isVerified'] ? '✅ Yes' : '❌ No' }}
+            </span>
+          </div>          
+          <div class="status-control">
+            <strong>Status:</strong>
+            <select
+              [ngModel]="updatedStatuses[order.orderId]"
+              (ngModelChange)="onStatusChange(order.orderId, $event)">
+              
+              <!-- Status options for Order Update -->
+              <ng-container *ngIf="!isDeliveryView">
+                <option value="Pending">🟡 Pending</option>
+                <option value="Approved">🟢 Approved</option>
+                <option value="Rejected">🔴 Rejected</option>
+                <!-- <option value="Paid">💰 Paid</option> -->
+              </ng-container>
+  
+              <!-- Status options for Delivery Update -->
+              <ng-container *ngIf="isDeliveryView">
+                <option value="Shipped">📦 Shipped</option>
+                <option value="Delivered">✅ Delivered</option>
+              </ng-container>
+            </select>
+  
+            <button class="submit-btn" (click)="submitStatusUpdate(order.orderId)">Update</button>
+          </div>
+        </div>
+  
+        <div class="header-right">
+          <span><strong>Placed On:</strong> {{ order.orderDate | date:'medium' }}</span>
+        </div>
+      </div>
+  
+      <div class="order-body">
+        <div class="drug-list">
+          <div class="drug-item" *ngFor="let detail of order.orderDetails">
+            <img [src]="detail.image" alt="{{ detail.drugName }}" />
+            <div class="info">
+              <h4>{{ detail.drugName }}</h4>
+              <p>Quantity: <strong>{{ detail.quantity }}</strong></p>
+              <p>Price: ₹{{ detail.price }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

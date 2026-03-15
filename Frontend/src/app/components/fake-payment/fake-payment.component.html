@@ -1,0 +1,47 @@
+<div class="razorpay-container">
+  <div class="payment-box row">
+    <!-- Left Panel -->
+    <div class="left-panel col-md-4 bg-success text-white p-4 rounded-start">
+      <h2>Pharmacy Payment</h2>
+      <p><strong>Doctor:</strong> {{ doctorEmail }}</p>
+      <p><strong>Total:</strong> ₹{{ totalAmount }}</p>
+    </div>
+
+    <!-- Right Panel -->
+    <div class="right-panel col-md-8 p-4">
+      <h4 class="mb-3">Select Payment Method</h4>
+
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="method" value="UPI" [(ngModel)]="selectedMethod" />
+        <label class="form-check-label">
+          <i class="bi bi-currency-rupee"></i> UPI
+        </label>
+      </div>
+
+      <div class="form-check mb-2">
+        <input class="form-check-input" type="radio" name="method" value="CreditCard" [(ngModel)]="selectedMethod" />
+        <label class="form-check-label">
+          <i class="bi bi-credit-card-2-front"></i> Credit/Debit Card
+        </label>
+      </div>
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="radio" name="method" value="NetBanking" [(ngModel)]="selectedMethod" />
+        <label class="form-check-label">
+          <i class="bi bi-bank"></i> Net Banking
+        </label>
+      </div>
+
+      <div *ngIf="selectedMethod === 'UPI'" class="mb-3">
+        <label for="upiApp" class="form-label">Select UPI App:</label>
+        <select id="upiApp" class="form-select" [(ngModel)]="upiApp">
+          <option value="GPay">GPay</option>
+          <option value="PhonePe">PhonePe</option>
+          <option value="Paytm">Paytm</option>
+        </select>
+      </div>
+
+      <button class="btn btn-success w-100" (click)="payNow()">Pay ₹{{ totalAmount }}</button>
+    </div>
+  </div>
+</div>

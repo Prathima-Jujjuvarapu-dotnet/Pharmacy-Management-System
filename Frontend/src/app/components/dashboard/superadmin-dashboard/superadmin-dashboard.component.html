@@ -1,0 +1,72 @@
+<app-profile-sidebar [email]="email"></app-profile-sidebar>
+<div class="superadmin-container">
+
+    <!-- DASHBOARD VIEW -->
+    <div *ngIf="currentView === 'dashboard'" class="tab-content">
+        <h1>📊 Dashboard</h1>
+        <p>Coming soon: Display all admins working functions.</p>
+      </div>
+    <div *ngIf="currentView === 'manageadmins'" class="tab-content">
+      <h1 class="title">🛡️ SuperAdmin - Manage Admins</h1>
+      <div *ngIf="loading" class="loading">Loading admins...</div>
+      <div *ngIf="!loading && allAdmins.length === 0" class="no-admins">
+        <p>No admins found.</p>
+      </div>
+  
+      <div *ngIf="!loading && allAdmins.length" class="admin-table-wrapper">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Change Role</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let admin of allAdmins">
+              <td>#{{ admin.adminId }}</td>
+              <td>{{ admin.adminName }}</td>
+              <td>{{ admin.adminEmail }}</td>
+              <td>
+                <span class="badge" [ngClass]="{'superadmin-badge': admin.adminRole === 'SuperAdmin'}">
+                  {{ admin.adminRole }}
+                </span>
+              </td>
+              <td>
+                <select #roleSelect (change)="onRoleChange(admin, roleSelect.value)" [disabled]="admin.adminRole === 'SuperAdmin'">
+                  <option *ngFor="let role of roles" [value]="role" [selected]="admin.adminRole === role">
+                    {{ role }}
+                  </option>
+                </select>
+              </td>
+              <td>
+                <button class="delete-btn" 
+                        [disabled]="admin.adminRole === 'SuperAdmin'" 
+                        (click)="deleteAdmin(admin.adminId)" 
+                        [title]="admin.adminRole === 'SuperAdmin' ? 'SuperAdmin cannot be deleted' : 'Delete this admin'">
+                  🗑️ Delete
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- LOGS VIEW -->
+    <div *ngIf="currentView === 'logs'" class="tab-content">
+      <h1>📜 System Logs</h1>
+      <p>Coming soon: Display system logs here.</p>
+    </div>
+  
+    <!-- SETTINGS VIEW -->
+    <div *ngIf="currentView === 'settings'" class="tab-content">
+      <h1>⚙️ Settings</h1>
+      <p>Coming soon: SuperAdmin settings panel.</p>
+    </div>
+  
+  </div>
+  

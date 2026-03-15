@@ -1,0 +1,81 @@
+<div class="home-page">
+  <!-- 🔍 Search bar + 🔔 Notification bell -->
+  <div class="search-bar-container">
+    <input
+      type="text"
+      class="search-bar"
+      (input)="searchDrugs($event)"
+      placeholder="Search for medicines..."
+    />
+
+    <!-- 🔔 Notification Bell + Dropdown -->
+    <div class="notification-bell" (click)="toggleNotifications()">
+      🔔
+      <span *ngIf="unreadCount > 0" class="badge">{{ unreadCount }}</span>
+
+      <div class="notification-dropdown" *ngIf="showDropdown">
+        <div
+          *ngFor="let n of notifications"
+          class="notification-item"
+          [class.unread]="!n.isRead"
+        >
+          <div class="notification-content">
+            <span class="notification-icon">🔔</span>
+            <div>
+              <p class="notification-message">{{ n.message }}</p>
+              <p class="notification-time">{{ n.createdAt | date: 'short' }}</p>
+            </div>
+          </div>
+          <button class="mark-read-btn" (click)="markAsRead(n.id)">Mark as Read</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-profile-sidebar [email]="email"></app-profile-sidebar>
+
+  <div class="drug-list" *ngIf="drugList.length > 0; else noDrugs">
+    <div
+      class="drug-card"
+      *ngFor="let drug of drugList"
+      (click)="goToDrugDetails(drug)"
+    >
+      <img
+        [src]="drug.image || 'assets/default-medicine.jpg'"
+        alt="{{ drug.name }}"
+        class="drug-image"
+      />
+      <div class="drug-details">
+        <h3>{{ drug.name }}</h3>
+        <p><strong>Description:</strong> {{ drug.description }}</p>
+        <p><strong>Price:</strong> ₹{{ drug.price }}</p>
+        <p><strong>Rating:</strong> ⭐ {{ drug.rating.toFixed(1) }} ({{ drug.reviewCount }} reviews)</p>
+
+        <!-- ✅ Out of Stock Tag -->
+        <p *ngIf="drug.isOutOfStock" class="out-of-stock-label">Out of Stock</p>
+
+        <!-- ✅ Notify Me button only for out-of-stock drugs -->
+        <button
+          *ngIf="drug.isOutOfStock"
+          class="notify-me-btn"
+          (click)="notifyMe(drug); $event.stopPropagation()"
+        >
+          🔔 Notify Me
+        </button>
+
+        <!-- 🛒 Add to Cart button -->
+        <button
+          class="add-to-cart-btn"
+          [disabled]="drug.isOutOfStock"
+          (click)="addToCart(drug); $event.stopPropagation()"
+        >
+          🛒 Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noDrugs>
+    <p>No drugs available at the moment.</p>
+  </ng-template>
+</div>

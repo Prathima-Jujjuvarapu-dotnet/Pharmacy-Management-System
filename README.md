@@ -136,32 +136,30 @@ Each admin role has a **dedicated Angular dashboard** for their specific tasks.
 
 ## Project Structure
 
-
+```
 Pharmacy-Management-System
 
-Backend
-│
-├── ApiGateway
-├── AuthService
-├── DrugService
-├── InventoryService
-├── OrderService
-├── PaymentService
-├── SalesService
-├── SupplierInventoryService
-└── DataAccessLayer
-   ├── Data (DbContext and database configuration)
-   ├── Models (Entity models)
-   ├── EmailNotification (Email services for notifications)
-   └── ExceptionHandling (Custom exception middleware)
+├── Backend
+│   ├── ApiGateway
+│   ├── AuthService
+│   ├── DrugService
+│   ├── InventoryService
+│   ├── OrderService
+│   ├── PaymentService
+│   ├── SalesService
+│   ├── SupplierInventoryService
+│   └── DataAccessLayer
+│       ├── Data (DbContext and database configuration)
+│       ├── Models (Entity models)
+│       ├── EmailNotification (Email services for notifications)
+│       └── ExceptionHandling (Custom exception middleware)
 
-Frontend
-│
-└── Angular Application
-├── Components
-├── Services
-└── UI Modules
-
+└── Frontend
+    └── Angular Application
+        ├── Components
+        ├── Services
+        └── UI Modules
+```
 
 ---
 

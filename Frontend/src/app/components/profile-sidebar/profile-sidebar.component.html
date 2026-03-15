@@ -1,0 +1,124 @@
+<!-- Top-right profile icon -->
+<div class="top-right-profile" *ngIf="profile && !isSidebarOpen" (click)="toggleSidebar()">
+  <img [src]="getFullImageUrl(profile.ProfileImageUrl)" alt="Profile" class="rounded-circle shadow profile-icon" />
+</div>
+
+<!-- Sidebar -->
+<div class="profile-sidebar bg-light border shadow p-3" *ngIf="isSidebarOpen && profile">
+  <button class="btn-close" (click)="closeSidebar()" aria-label="Close"></button>
+
+  <!-- Profile Image -->
+  <div class="position-relative text-center mb-3">
+    <img
+      [src]="getFullImageUrl(profile.ProfileImageUrl)"
+      alt="Profile"
+      class="rounded-circle profile-pic shadow clickable"
+      (click)="toggleImageOptions()"
+    />
+
+    <!-- Image Options Dropdown -->
+    <div class="image-options-dropdown animate__animated animate__fadeIn" *ngIf="showImageOptions">
+      <button class="dropdown-item" (click)="triggerFileInput()">📁 Upload from system</button>
+      <button class="dropdown-item" (click)="openCamera()">📷 Take Photo</button>
+      <button class="dropdown-item" (click)="selectAvatar('avatar1.png')">🎭 Choose Avatar</button>
+    </div>
+
+    <input type="file" #fileInput class="d-none" (change)="uploadImage($event)" accept="image/*" />
+  </div>
+
+  <h4 class="text-center">{{ profile.Name }}</h4>
+  <p class="text-muted text-center">{{ profile.AdminRole }}</p>
+  <p class="fw-bold text-center">{{ profile.Message }}</p>
+
+  <hr />
+
+  <!-- Email -->
+  <div class="mb-3">
+    <p><strong>📧 Email:</strong> {{ profile.Email }}</p>
+  </div>
+
+  <!-- Editable Name -->
+  <div class="mb-3">
+    <label class="form-label"><strong>Name:</strong></label>
+    <div *ngIf="!editMode.name">
+      <span>{{ profile.Name || 'N/A' }}</span>
+      <button class="btn btn-sm btn-outline-primary ms-2" (click)="toggleEdit('name')">Edit</button>
+    </div>
+    <div *ngIf="editMode.name">
+      <input [(ngModel)]="profile.Name" class="form-control mb-2" />
+      <button class="btn btn-sm btn-success me-2" (click)="saveField('name')">Save</button>
+      <button class="btn btn-sm btn-secondary" (click)="toggleEdit('name')">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Editable Fields -->
+  <div class="mb-3" *ngFor="let field of ['contact', 'address']">
+    <label class="form-label text-capitalize"><strong>{{ field }}:</strong></label>
+    <div *ngIf="!editMode[field]">
+      <span>{{ profile[field.charAt(0).toUpperCase() + field.slice(1)] || 'N/A' }}</span>
+      <button class="btn btn-sm btn-outline-primary ms-2" (click)="toggleEdit(field)">Edit</button>
+    </div>
+    <div *ngIf="editMode[field]">
+      <input [(ngModel)]="profile[field.charAt(0).toUpperCase() + field.slice(1)]" class="form-control mb-2" />
+      <button class="btn btn-sm btn-success me-2" (click)="saveField(field)">Save</button>
+      <button class="btn btn-sm btn-secondary" (click)="toggleEdit(field)">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Specialization (Doctor only) -->
+  <div class="mb-3" *ngIf="isDoctor">
+    <label class="form-label"><strong>Specialization:</strong></label>
+    <div *ngIf="!editMode.specialization">
+      <span>{{ profile.Specialization || 'N/A' }}</span>
+      <button class="btn btn-sm btn-outline-primary ms-2" (click)="toggleEdit('specialization')">Edit</button>
+    </div>
+    <div *ngIf="editMode.specialization">
+      <input [(ngModel)]="profile.Specialization" class="form-control mb-2" />
+      <button class="btn btn-sm btn-success me-2" (click)="saveField('specialization')">Save</button>
+      <button class="btn btn-sm btn-secondary" (click)="toggleEdit('specialization')">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Admin Role (Admin only) -->
+  <div *ngIf="isAdmin" class="mb-3">
+    <label class="form-label"><strong>Admin Role:</strong></label>
+    <input class="form-control" [value]="profile.AdminRole" disabled />
+  </div>
+
+  <!-- Change Password -->
+  <div class="mb-3">
+    <label><strong>🔒 Password:</strong></label>
+    <button class="btn btn-sm btn-warning ms-2" (click)="goToChangePassword()">Change Password</button>
+  </div>
+
+  <!-- Avatar Preview -->
+  <div *ngIf="previewImageUrl" class="text-center mb-3">
+    <img [src]="previewImageUrl" alt="Preview" class="rounded shadow" width="100" />
+    <button class="btn btn-sm btn-success mt-2" (click)="submitProfileImage()">Upload</button>
+  </div>
+
+  <!-- Avatar Selection -->
+  <div class="mb-3">
+    <label><strong>🎭 Choose Avatar:</strong></label>
+    <div class="d-flex flex-wrap gap-2 mt-2">
+      <img [src]="avatarBaseUrl + 'avatar1.png'" width="50" class="rounded-circle border" (click)="selectAvatar('avatar1.png')" />
+      <img [src]="avatarBaseUrl + 'avatar2.png'" width="50" class="rounded-circle border" (click)="selectAvatar('avatar2.png')" />
+      <img [src]="avatarBaseUrl + 'avatar3.png'" width="50" class="rounded-circle border" (click)="selectAvatar('avatar3.png')" />
+    </div>
+    <button class="btn btn-sm btn-success mt-2" (click)="submitProfileImage()">Set Avatar</button>
+  </div>
+
+  <!-- Account Actions -->
+  <div class="mt-4">
+    <button class="btn btn-danger w-100 mb-2" (click)="deleteAccount()">Delete Account</button>
+  </div>
+</div>
+
+<!-- Camera Modal -->
+<div class="camera-modal" *ngIf="showCamera">
+  <video #video autoplay></video>
+  <div class="text-center mt-2">
+    <button class="btn btn-success me-2" (click)="capturePhoto()">Capture</button>
+    <button class="btn btn-secondary" (click)="closeCamera()">Cancel</button>
+  </div>
+</div>

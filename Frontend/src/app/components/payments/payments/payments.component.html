@@ -1,0 +1,33 @@
+<div class="payment-container">
+  <h2>💳 My Payments</h2>
+
+  <div *ngIf="doctorPayments.length === 0" class="no-payments">
+    <p>🚫 No payments found. Please make a payment for your orders.</p>
+  </div>
+
+  <div *ngIf="doctorPayments.length > 0">
+    <table class="payment-table">
+      <thead>
+        <tr>
+          <th>🧪 Drug Name</th>
+          <th>💰 Amount</th>
+          <th>📅 Payment Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr 
+          *ngFor="let payment of doctorPayments"
+          [routerLink]="['/payment-details', payment.paymentId]" 
+          class="clickable-row">
+          <td>{{ payment.drugName }}</td>
+          <td><span class="amount">₹{{ payment.amount }}</span></td>
+          <td>{{ payment.paymentDate | date: 'medium' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="summary">
+      <p class="total-amount">💵 Total Paid: <span>₹{{ totalAmount }}</span></p>
+    </div>
+  </div>
+</div>

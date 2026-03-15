@@ -1,0 +1,40 @@
+<div class="orders-container">
+  <h2>📦 My Orders</h2>
+
+  <div *ngIf="myOrders.length === 0" class="empty-orders">
+    <p>No orders found. Try placing an order!</p>
+  </div>
+
+  <div *ngIf="myOrders.length > 0">
+    <div *ngFor="let order of myOrders" class="order-card">
+      <div class="order-header">
+        <div>
+          <strong>🆔 Order ID:</strong> {{ order.orderId }}
+        </div>
+        <div>
+          <strong>📅 Date:</strong> {{ order.orderDate }}
+        </div>
+        <div [class.paid]="order.orderStatus === 'Paid'" [class.pending]="order.orderStatus === 'Approved'">
+          <strong>🚚 Status:</strong> {{ order.orderStatus }}
+        </div>
+        <button *ngIf="order.orderStatus === 'Approved'" (click)="payNow(order.orderId)">
+          Pay Now
+        </button> 
+      </div>
+
+      <div class="order-items">
+        <div *ngFor="let item of order.items" class="order-item">
+          <img [src]="item.image" alt="{{ item.drugName }}" class="order-image" />
+          <div class="order-details">
+            <div class="drug-name">{{ item.drugName }}</div>
+            <div class="order-info">
+              <span>Quantity: {{ item.quantity }}</span>
+              <span>Price: {{ item.price | currency }}</span>
+              <span>Total: {{ item.quantity * item.price | currency }}</span>
+            </div>
+          </div>         
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

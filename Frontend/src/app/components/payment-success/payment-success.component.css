@@ -1,0 +1,17 @@
+.success-container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+.success-container h2 {
+  color: green;
+  font-size: 28px;
+}
+
+.success-container p {
+  font-size: 18px;
+  margin: 20px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}

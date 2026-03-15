@@ -1,0 +1,151 @@
+/* Sidebar container */
+.profile-sidebar {
+  width: 325px;
+  max-width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1050;
+  overflow-y: auto;
+  background-color: var(--sidebar-bg, #ffffff);
+  color: var(--sidebar-text, #333333);
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Top-right profile icon */
+.top-right-profile {
+  position: fixed;
+  top: 15px;
+  right: 40px;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.profile-icon {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--accent-color, #007bff);
+}
+
+/* Profile picture in sidebar */
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid var(--accent-color, #007bff);
+}
+
+/* Clickable hover effect */
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.clickable:hover {
+  transform: scale(1.03);
+}
+
+/* Image options dropdown */
+.image-options-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: var(--card-bg, #ffffff);
+  border: 1px solid var(--input-border, #dddddd);
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.image-options-dropdown .dropdown-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--input-border, #eeeeee);
+  color: var(--sidebar-text, #333333);
+}
+
+.image-options-dropdown .dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.image-options-dropdown .dropdown-item:hover {
+  background-color: var(--sidebar-hover, #f8f9fa);
+}
+
+/* Avatar selection */
+img[role="avatar"],
+.profile-sidebar img[src*="avatar"] {
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.2s ease;
+}
+
+img[role="avatar"]:hover,
+.profile-sidebar img[src*="avatar"]:hover {
+  border-color: var(--accent-color, #007bff);
+}
+
+/* Camera modal */
+.camera-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--card-bg, #ffffff);
+  padding: 1rem;
+  border-radius: 10px;
+  z-index: 2000;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: var(--sidebar-text, #333333);
+}
+
+.camera-modal video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* Buttons */
+button {
+  margin-top: 0.25rem;
+  color: var(--sidebar-text, #333333);
+}
+
+/* Close button */
+.btn-close {
+  float: right;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: var(--sidebar-text, #333333);
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+  .profile-sidebar {
+    width: 100%;
+  }
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+  }
+
+  .top-right-profile {
+    top: 10px;
+    right: 10px;
+  }
+}
+.profile-sidebar.bg-light {
+  background-color: var(--sidebar-bg, #ffffff) !important;
+}

@@ -1,0 +1,108 @@
+.orders-container {
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: 'Arial', sans-serif;
+  color: var(--text-color);
+}
+
+h2 {
+  text-align: center;
+  color: var(--text-color);
+}
+
+.order-card {
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s, background-color 0.3s;
+}
+
+.order-card:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--input-border);
+  padding-bottom: 10px;
+}
+
+.status {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.status.paid {
+  color: #2e7d32;
+}
+
+.status.pending {
+  color: orange;
+}
+
+.pay-now-btn,
+.pay-now-button {
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+}
+
+.pay-now-btn:hover,
+.pay-now-button:hover {
+  background-color: #1565c0;
+}
+
+.empty-orders {
+  text-align: center;
+  color: var(--text-color);
+  font-size: 16px;
+}
+
+.order-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+}
+
+.order-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.order-details {
+  flex: 1;
+}
+
+.drug-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.order-info {
+  font-size: 14px;
+  color: var(--text-color);
+  display: flex;
+  gap: 15px;
+}

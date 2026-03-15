@@ -1,0 +1,56 @@
+<div class="container my-4">
+  <div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+      <h4><i class="bi bi-credit-card-2-front-fill"></i> Payment Details</h4>
+    </div>
+    <div class="card-body">
+      <p><i class="bi bi-person-fill"></i> <strong>Doctor:</strong> {{ paymentDetails.doctorName }}</p>
+      <p><i class="bi bi-calendar-event-fill"></i> <strong>Payment Date:</strong> {{ paymentDetails.paymentDate | date: 'medium' }}</p>
+      <p><i class="bi bi-cash-coin"></i> <strong>Amount Paid:</strong> <span class="badge bg-success fs-6">₹{{ paymentDetails.amount }}</span></p>
+
+      <p><i class="bi bi-wallet2"></i> <strong>Payment Method:</strong>
+        {{
+          paymentDetails.paymentMethod === 0 ? 'UPI' :
+          paymentDetails.paymentMethod === 1 ? 'Cash' :
+          paymentDetails.paymentMethod === 2 ? 'Debit Card' :
+          paymentDetails.paymentMethod === 3 ? 'Credit Card' :
+          paymentDetails.paymentMethod === 4 ? 'Net Banking' : 'Unknown'
+        }}
+      </p>
+
+      <p *ngIf="paymentDetails.upiApp"><i class="bi bi-phone-fill"></i> <strong>UPI App:</strong> {{ paymentDetails.upiApp }}</p>
+      <p *ngIf="paymentDetails.transactionId"><i class="bi bi-hash"></i> <strong>Transaction ID:</strong> {{ paymentDetails.transactionId }}</p>
+    </div>
+  </div>
+
+  <div class="card mt-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h5><i class="bi bi-box-seam"></i> Related Orders</h5>
+    </div>
+    <div class="card-body p-0">
+      <div *ngIf="relatedOrders.length > 0; else noOrders">
+        <table class="table table-striped mb-0">
+          <thead class="table-light">
+            <tr>
+              <th><i class="bi bi-capsule"></i> Drug Name</th>
+              <th><i class="bi bi-stack"></i> Quantity</th>
+              <th><i class="bi bi-currency-rupee"></i> Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of relatedOrders">
+              <td>{{ order.drugName }}</td>
+              <td>{{ order.quantity }}</td>
+              <td>₹{{ order.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ng-template #noOrders>
+        <div class="p-3 text-center text-muted">
+          <i class="bi bi-exclamation-circle"></i> No related orders found for this payment.
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

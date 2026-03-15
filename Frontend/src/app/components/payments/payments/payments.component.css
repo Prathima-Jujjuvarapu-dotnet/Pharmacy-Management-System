@@ -1,0 +1,103 @@
+.payment-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 25px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+}
+
+h2 {
+  text-align: center;
+  color: var(--text-color);
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h2::before {
+  /* content: "💳"; */
+  margin-right: 10px;
+}
+
+.no-payments {
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-color);
+  padding: 20px;
+}
+
+.payment-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  color: var(--text-color);
+}
+
+.payment-table th,
+.payment-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--input-border);
+  text-align: center;
+}
+
+.payment-table th {
+  background: var(--accent-color);
+  color: white;
+  font-weight: bold;
+}
+
+.payment-table tr:hover {
+  background: var(--input-bg);
+}
+
+.details-btn {
+  background: var(--accent-color);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.details-btn:hover {
+  background: #007bff;
+}
+
+.amount {
+  font-weight: bold;
+  color: #28a745;
+  font-size: 16px;
+}
+
+.summary {
+  margin-top: 20px;
+  text-align: right;
+}
+
+.total-amount {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.total-amount span {
+  color: #28a745;
+  font-size: 20px;
+}
+
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.clickable-row:hover {
+  background: var(--input-bg);
+}

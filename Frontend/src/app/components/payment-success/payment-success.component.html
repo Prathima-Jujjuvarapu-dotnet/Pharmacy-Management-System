@@ -1,0 +1,18 @@
+<div class="d-flex justify-content-center align-items-center vh-100 status-container">
+  <div class="text-center">
+    <ng-container [ngSwitch]="status">
+      <div *ngSwitchCase="'processing'">
+        <div class="spinner-border text-primary mb-3" role="status"></div>
+        <p class="fs-5">⏳ Processing your payment...</p>
+      </div>
+      <div *ngSwitchCase="'success'">
+        <i class="bi bi-check-circle-fill text-success fs-1"></i>
+        <p class="fs-4 mt-2">✅ Payment Successful!</p>
+      </div>
+      <div *ngSwitchCase="'failed'">
+        <i class="bi bi-x-circle-fill text-danger fs-1"></i>
+        <p class="fs-4 mt-2">❌ Payment Failed. Please try again.</p>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+.payment-details-container {
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .payment-card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  
+  .payment-info p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+  
+  .payment-info .amount {
+    font-size: 20px;
+    font-weight: bold;
+    color: #28a745;
+  }
+  
+  .order-section {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .order-table th, .order-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .order-table th {
+    background: #007bff;
+    color: white;
+  }
+  
+  .no-orders {
+    text-align: center;
+    font-size: 16px;
+    color: #888;
+    padding: 10px;
+  }
+  
